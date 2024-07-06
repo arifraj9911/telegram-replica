@@ -3,6 +3,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BiVolumeMute } from "react-icons/bi";
 import { BsEmojiSmile, BsEraser } from "react-icons/bs";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { GrAttachment } from "react-icons/gr";
 import { HiDotsVertical } from "react-icons/hi";
 import { IoIosArrowForward, IoMdSend } from "react-icons/io";
@@ -10,27 +11,34 @@ import { IoSearchOutline } from "react-icons/io5";
 import { LuPaintbrush } from "react-icons/lu";
 import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const Main = () => {
   const [textValue, setTextValue] = useState("");
+  const location = useLocation();
+  console.log(location.pathname.split("/")[1]);
+  const currentUser = location.pathname.split("/")[1];
 
   return (
     <div className="flex gap-6 ">
-      <div className="w-1/3  bg-white p-5">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+      <div className="w-1/3   bg-white px-5 py-2">
+        <div className="flex items-center gap-6">
+          <GiHamburgerMenu className="text-[22px] text-gray-400" />
+          <input
+            type="text"
+            className="border w-full py-1 px-5 outline-none rounded-2xl bg-[#F1F1F1]"
+            placeholder="Search..."
+          />
+        </div>
       </div>
 
       <div className="flex-1 relative">
         <div className="fixed border border-t-0 border-b-0  border-gray-300 w-full bg-white px-2  py-1 top-0">
           <div className="flex">
             <div>
-              <h2 className="text-[16px] font-semibold">Name</h2>
+              <h2 className="text-[16px] font-semibold capitalize">
+                {currentUser}
+              </h2>
               <p className="text-sm text-gray-400 font-normal">
                 last seen 12/12/24
               </p>
@@ -101,7 +109,10 @@ const Main = () => {
         </div>
         <div className="fixed w-full bg-white    bottom-0">
           <div className="relative">
-            <GrAttachment className="absolute top-[14px] left-2 text-gray-400 text-xl" />
+            <GrAttachment
+              type="file"
+              className="absolute top-[14px] left-2 text-gray-400 text-xl"
+            />
             <input
               onChange={(e) => setTextValue(e.target.value)}
               value={textValue}
