@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { CiBookmark } from "react-icons/ci";
+import { FaPlusCircle } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { GrAnnounce } from "react-icons/gr";
 import {
@@ -7,9 +9,12 @@ import {
   IoSettingsOutline,
 } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 const NavbarDrawer = () => {
+  const [toggleArrow, setToggleArrow] = useState(false);
+  console.log(toggleArrow);
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -27,10 +32,37 @@ const NavbarDrawer = () => {
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>
-            <h4 className="text-[16px] font-semibold">Arif Hossain</h4>
-            <p className="text-blue-400">Set Emoji Status</p>
+            <div className="flex justify-between items-center">
+              <div>
+                <h4 className="text-[16px] font-semibold">Arif Hossain</h4>
+                <p className="text-blue-400">Set Emoji Status</p>
+              </div>
+              <div>
+                {toggleArrow ? (
+                  <SlArrowDown
+                    className="cursor-pointer "
+                    onClick={() => setToggleArrow(!toggleArrow)}
+                  />
+                ) : (
+                  <SlArrowUp
+                    className="cursor-pointer  "
+                    onClick={() => setToggleArrow(!toggleArrow)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
           <hr className=" mb-3" />
+          {!toggleArrow && (
+            <div>
+              <h4 className="font-semibold flex items-center gap-6 px-5">
+                <FaPlusCircle className="text-xl text-[#40A7E3]" />
+                Add Account
+              </h4>
+              <hr className="my-3" />
+            </div>
+          )}
+
           <li>
             <Link className="px-5 rounded-none gap-5 font-semibold" to={"/"}>
               <LuUsers className="text-xl" />
