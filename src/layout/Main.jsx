@@ -1,11 +1,20 @@
+import { useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BiVolumeMute } from "react-icons/bi";
+import { BsEmojiSmile, BsEraser } from "react-icons/bs";
+import { FaRegCircleUser } from "react-icons/fa6";
 import { GrAttachment } from "react-icons/gr";
 import { HiDotsVertical } from "react-icons/hi";
+import { IoIosArrowForward, IoMdSend } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
-import { MdCall } from "react-icons/md";
+import { LuPaintbrush } from "react-icons/lu";
+import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
 import { Link, Outlet } from "react-router-dom";
 
 const Main = () => {
+  const [textValue, setTextValue] = useState("");
+
   return (
     <div className="flex gap-6 ">
       <div className="w-1/3  bg-white p-5">
@@ -30,7 +39,51 @@ const Main = () => {
               <IoSearchOutline className="text-xl" />
               <MdCall className="text-xl" />
               <PiBookOpenUser className="text-xl" />
-              <HiDotsVertical className="text-xl" />
+
+              <div className="flex items-center flex-col">
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="">
+                    <HiDotsVertical className="text-xl " />
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                  >
+                    <li>
+                      <a>
+                        <BiVolumeMute />
+                        Mute Notification
+                        <IoIosArrowForward />
+                      </a>
+                    </li>
+                    <hr />
+                    <li>
+                      <a>
+                        <FaRegCircleUser />
+                        View profile
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <LuPaintbrush />
+                        Set Wallpaper
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <BsEraser />
+                        Clear History
+                      </a>
+                    </li>
+                    <li>
+                      <a className="text-red-500">
+                        <AiOutlineDelete />
+                        Delete Chat
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -46,15 +99,27 @@ const Main = () => {
         >
           <Outlet></Outlet>
         </div>
-        <div className="fixed w-full bg-white   bottom-0">
-          <GrAttachment className="absolute top-[14px] left-2 text-gray-400 text-xl" />
-          <input
-            type="text"
-            name=""
-            placeholder="Write a message..."
-            className="border border-gray-300 border-t-0 px-10 py-[10px] outline-none w-full"
-            id=""
-          />
+        <div className="fixed w-full bg-white    bottom-0">
+          <div className="relative">
+            <GrAttachment className="absolute top-[14px] left-2 text-gray-400 text-xl" />
+            <input
+              onChange={(e) => setTextValue(e.target.value)}
+              value={textValue}
+              type="text"
+              name=""
+              placeholder="Write a message..."
+              className="border border-gray-300 border-t-0 border-b-0 px-10 py-[10px] outline-none w-full"
+              id=""
+            />
+            <div className="flex absolute left-1/2 ml-32 top-3 gap-6">
+              <BsEmojiSmile className="text-[22px] text-gray-500" />
+              {textValue.length > 0 ? (
+                <IoMdSend className="text-[#40A7E3] text-[22px]" />
+              ) : (
+                <MdOutlineKeyboardVoice className="text-[22px] text-gray-500" />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
