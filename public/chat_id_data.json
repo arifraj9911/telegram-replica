@@ -1,0 +1,91 @@
+[
+  {
+    "id": 14022,
+    "sender_id": 1,
+    "role_id": 9,
+    "message": "Hi there! Welcome to BeyondChats\nWhat brings you here today?\nAsk me anything about BeyondChats",
+    "unanswered": 0,
+    "vote": null,
+    "chat_id": 3888,
+    "action_id": null,
+    "is_corrected": 0,
+    "created_at": "2024-07-04T09:41:48.000000Z",
+    "updated_at": "2024-07-04T09:41:48.000000Z",
+    "sender": {
+      "id": 1,
+      "name": "BeyondChat",
+      "email": "contact@beyondchat.com",
+      "phone": null,
+      "email_verified_at": null,
+      "password_updated": 0,
+      "created_at": null,
+      "updated_at": "2023-04-26T12:43:24.000000Z",
+      "device": null,
+      "browser": null,
+      "os": null,
+      "city": null,
+      "country": null
+    }
+  },
+  {
+    "id": 14023,
+    "sender_id": 3828,
+    "role_id": 4,
+    "message": "hi",
+    "unanswered": 0,
+    "vote": null,
+    "chat_id": 3888,
+    "action_id": null,
+    "is_corrected": 0,
+    "created_at": "2024-07-04T09:41:48.000000Z",
+    "updated_at": "2024-07-04T09:41:48.000000Z",
+    "sender": {
+      "id": 3828,
+      "name": "Shone Jogi",
+      "email": "asdfaefsdfgqwaeg@beyondexams.orgfasd",
+      "phone": "9130907456",
+      "email_verified_at": null,
+      "password_updated": 0,
+      "created_at": "2024-07-04T09:41:23.000000Z",
+      "updated_at": "2024-07-04T09:41:23.000000Z",
+      "device": "desktop",
+      "browser": "Chrome",
+      "os": "Mac",
+      "city": "Delhi",
+      "country": {
+        "id": 103,
+        "name": "India",
+        "code": "IN",
+        "phone_code": "91"
+      }
+    }
+  },
+  {
+    "id": 14024,
+    "sender_id": 1,
+    "role_id": 9,
+    "message": "Hello! \nHow can I assist you today?",
+    "unanswered": 0,
+    "vote": null,
+    "chat_id": 3888,
+    "action_id": null,
+    "is_corrected": 0,
+    "created_at": "2024-07-04T09:41:50.000000Z",
+    "updated_at": "2024-07-04T09:41:50.000000Z",
+    "sender": {
+      "id": 1,
+      "name": "BeyondChat",
+      "email": "contact@beyondchat.com",
+      "phone": null,
+      "email_verified_at": null,
+      "password_updated": 0,
+      "created_at": null,
+      "updated_at": "2023-04-26T12:43:24.000000Z",
+      "device": null,
+      "browser": null,
+      "os": null,
+      "city": null,
+      "country": null
+    }
+  }
+]
