@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Main = () => {
   const [chatData, setChatData] = useState([]);
-  const [selectedChat,setSelectedChat] = useState({})
+  const [selectedChat,setSelectedChat] = useState({message:'Select a chat to start messaging'})
 
   const [dark, setDark] = useState(localStorage.getItem("darkMode"));
   

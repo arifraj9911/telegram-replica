@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import {  useState } from "react";
+import { useState } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -15,11 +15,10 @@ import { LuUsers } from "react-icons/lu";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
-const NavbarDrawer = ({darkModeHandler,dark}) => {
+const NavbarDrawer = ({ darkModeHandler, dark }) => {
   const [toggleArrow, setToggleArrow] = useState(false);
   // const [theme,setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
   // const [dark, setDark] = useState(localStorage.getItem("darkMode"));
-
 
   // const handleToggleTheme = e =>{
   //   if(e.target.checked){
@@ -48,17 +47,17 @@ const NavbarDrawer = ({darkModeHandler,dark}) => {
   //   const localTheme = localStorage.getItem("theme");
   //   document.querySelector("html").setAttribute("data-theme",localTheme)
   // },[theme])
-//   console.log(toggleArrow);
+  //   console.log(toggleArrow);
   return (
-    <div className="drawer">
+    <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-side z-10">
+      <div className="drawer-side z-10 ">
         <label
           htmlFor="my-drawer"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-white text-base-content min-h-full w-72 p-0">
+        <ul className="menu bg-white dark:bg-[#17212B] dark:text-[#fff] text-base-content min-h-full w-72 p-0">
           {/* Sidebar content here */}
           <div className="p-5">
             <div className="avatar mb-4">
@@ -133,17 +132,21 @@ const NavbarDrawer = ({darkModeHandler,dark}) => {
               Settings
             </Link>
           </li>
-          <div className="flex items-center justify-between  hover:bg-[#E8E9EB]">
-            <li >
-              <Link className="px-5 rounded-none  gap-5 font-semibold " to={"/"}>
+          <div
+            className={`${
+              !dark && `hover:bg-[#E8E9EB]`
+            } flex items-center justify-between  `}
+          >
+            <li>
+              <Link
+                className="px-5 rounded-none  gap-5 font-semibold "
+                to={"/"}
+              >
                 <IoMoonOutline className="text-xl" />
                 Night Mode
               </Link>
             </li>
-            <button
-              className="pr-8 border-r-2"
-              onClick={() => darkModeHandler()}
-            >
+            <button className="pr-4" onClick={() => darkModeHandler()}>
               {dark && <IoSunny className="text-2xl" />}
               {!dark && <IoMoon className="text-2xl" />}
             </button>
