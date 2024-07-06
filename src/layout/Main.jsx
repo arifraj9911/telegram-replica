@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 const Main = () => {
   const [chatData, setChatData] = useState([]);
   const [selectedChat,setSelectedChat] = useState({})
+
+  const [dark, setDark] = useState(localStorage.getItem("darkMode"));
   
 
   useEffect(() => {
@@ -13,6 +15,20 @@ const Main = () => {
       .then((data) => setChatData(data));
   }, []);
 
+  useEffect(() => {
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    setDark(isDarkMode);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", dark);
+    localStorage.setItem("darkMode", dark);
+  }, [dark]);
+
+  const darkModeHandler = () => {
+    setDark((prevMode) => !prevMode);
+  };
+
   const handleMessage = message =>{
     // console.log(message);
     setSelectedChat(message);
@@ -20,9 +36,9 @@ const Main = () => {
 
   console.log(selectedChat)
   return (
-    <div className="flex gap-6 ">
-      <Sidebar chatData={chatData} handleMessage={handleMessage}></Sidebar>
-      <Content selectedChat={selectedChat}></Content>
+    <div className="flex ">
+      <Sidebar  chatData={chatData} handleMessage={handleMessage} dark={dark} darkModeHandler={darkModeHandler}></Sidebar>
+      <Content selectedChat={selectedChat} dark={dark}></Content>
     </div>
   );
 };

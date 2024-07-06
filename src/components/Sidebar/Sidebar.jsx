@@ -3,10 +3,10 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavbarDrawer from "../NavbarDrawer/NavbarDrawer";
 
-const Sidebar = ({ chatData, handleMessage }) => {
+const Sidebar = ({ chatData, handleMessage,darkModeHandler,dark }) => {
   return (
-    <div className="w-[35%]  relative bg-white px-4 py-2">
-      <div className="flex sticky bg-white top-0 items-center gap-4">
+    <div className="w-1/3  relative bg-white px-4 py-2 dark:bg-[#17212B] dark:text-[#b9b9b9]">
+      <div className="flex sticky bg-white dark:bg-[#17212B] top-0 items-center gap-4">
         <div className="drawer-content">
           <label htmlFor="my-drawer" className=" drawer-button">
             <GiHamburgerMenu className="text-[22px] text-gray-400 cursor-pointer" />
@@ -15,7 +15,7 @@ const Sidebar = ({ chatData, handleMessage }) => {
 
         <input
           type="text"
-          className="border w-full py-1 px-5 outline-none rounded-2xl bg-[#F1F1F1]"
+          className="border dark:border-[#17212B] w-full py-1 px-5 outline-none rounded-2xl dark:bg-[#242F3D] bg-[#F1F1F1]"
           placeholder="Search..."
         />
       </div>
@@ -32,14 +32,14 @@ const Sidebar = ({ chatData, handleMessage }) => {
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>
-            <div className="flex justify-between rounded-md hover:bg-[#F1F1F1] p-2 w-full">
+            <div className="flex justify-between rounded-md hover:bg-[#F1F1F1] dark:hover:bg-[#202B36] p-2 w-full">
               <div>
-                <h4 className="text-lg font-bold">{chat?.sender?.name}</h4>
+                <h4 className="text-lg font-bold dark:text-[#fff]">{chat?.sender?.name}</h4>
                 <p className="text-sm">
-                  {chat.message.length < 50 ? (
+                  {chat.message.length < 45 ? (
                     <span>{chat?.message}</span>
                   ) : (
-                    <span>{chat?.message.slice(0, 50)}...</span>
+                    <span>{chat?.message.slice(0, 45)}....</span>
                   )}
                 </p>
               </div>
@@ -48,7 +48,7 @@ const Sidebar = ({ chatData, handleMessage }) => {
           </div>
         ))}
       </div>
-      <NavbarDrawer></NavbarDrawer>
+      <NavbarDrawer dark={dark} darkModeHandler={darkModeHandler}></NavbarDrawer>
     </div>
   );
 };

@@ -1,20 +1,54 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import {  useState } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { GrAnnounce } from "react-icons/gr";
 import {
   IoCallOutline,
+  IoMoon,
   IoMoonOutline,
   IoSettingsOutline,
+  IoSunny,
 } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
-const NavbarDrawer = () => {
+const NavbarDrawer = ({darkModeHandler,dark}) => {
   const [toggleArrow, setToggleArrow] = useState(false);
-  console.log(toggleArrow);
+  // const [theme,setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
+  // const [dark, setDark] = useState(localStorage.getItem("darkMode"));
+
+
+  // const handleToggleTheme = e =>{
+  //   if(e.target.checked){
+  //       setTheme("dark")
+  //   }else{
+  //       setTheme("light")
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   const isDarkMode = localStorage.getItem("darkMode") === "true";
+  //   setDark(isDarkMode);
+  // }, []);
+
+  // useEffect(() => {
+  //   document.body.classList.toggle("dark", dark);
+  //   localStorage.setItem("darkMode", dark);
+  // }, [dark]);
+
+  // const darkModeHandler = () => {
+  //   setDark((prevMode) => !prevMode);
+  // };
+
+  // useEffect(()=>{
+  //   localStorage.setItem("theme",theme);
+  //   const localTheme = localStorage.getItem("theme");
+  //   document.querySelector("html").setAttribute("data-theme",localTheme)
+  // },[theme])
+//   console.log(toggleArrow);
   return (
     <div className="drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -24,7 +58,7 @@ const NavbarDrawer = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-white text-base-content min-h-full w-72 ">
+        <ul className="menu bg-white text-base-content min-h-full w-72 p-0">
           {/* Sidebar content here */}
           <div className="p-5">
             <div className="avatar mb-4">
@@ -99,16 +133,20 @@ const NavbarDrawer = () => {
               Settings
             </Link>
           </li>
-          <div className="flex items-center justify-between">
-            <li className="">
-              <Link className="px-5 rounded-none gap-5 font-semibold " to={"/"}>
+          <div className="flex items-center justify-between  hover:bg-[#E8E9EB]">
+            <li >
+              <Link className="px-5 rounded-none  gap-5 font-semibold " to={"/"}>
                 <IoMoonOutline className="text-xl" />
                 Night Mode
               </Link>
             </li>
-            <span>
-              <input type="checkbox" className="toggle " defaultChecked />
-            </span>
+            <button
+              className="pr-8 border-r-2"
+              onClick={() => darkModeHandler()}
+            >
+              {dark && <IoSunny className="text-2xl" />}
+              {!dark && <IoMoon className="text-2xl" />}
+            </button>
           </div>
         </ul>
       </div>

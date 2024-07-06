@@ -14,37 +14,35 @@ import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
 // import { Outlet, useLocation } from "react-router-dom";
 
-const Content = ({ selectedChat }) => {
+const Content = ({ selectedChat, dark }) => {
   const { message, sender } = selectedChat;
   const [textValue, setTextValue] = useState("");
-  // const location = useLocation();
-  // console.log(location.pathname.split("/")[1]);
-  // const currentUser = location.pathname.split("/")[1];
+
   return (
     <div className="flex-1 relative">
-      <div className="fixed border border-t-0 border-b-0  border-gray-300 w-full bg-white px-3  py-1 top-0">
+      <div className="fixed border border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
         <div className="flex">
           <div>
-            <h2 className="text-[16px] font-semibold capitalize">
+            <h2 className="text-[16px] dark:text-[#fff] font-semibold capitalize">
               {sender?.name}
             </h2>
             <p className="text-sm text-gray-400 font-normal">
               last seen 12/12/24
             </p>
           </div>
-          <div className="flex items-center  gap-4 absolute left-1/2 ml-10 top-4 ">
+          <div className="flex items-center  gap-4 absolute left-1/2 ml-20 top-4 ">
             <IoSearchOutline className="text-xl" />
             <MdCall className="text-xl" />
             <PiBookOpenUser className="text-xl" />
 
-            <div className="flex items-center flex-col">
-              <div className="dropdown dropdown-end">
+            <div className="flex items-center flex-col ">
+              <div className="dropdown dropdown-end ">
                 <div tabIndex={0} role="button" className="">
                   <HiDotsVertical className="text-xl " />
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] dark:bg-[#17212B] dark:text-[#fff] w-52 p-2 shadow"
                 >
                   <li>
                     <a>
@@ -85,22 +83,19 @@ const Content = ({ selectedChat }) => {
         </div>
       </div>
       <div
-        style={{
-          backgroundImage: "url(https://i.ibb.co/5MyL7d1/telegram.png)",
-          height: "100vh",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-        className=" w-full flex-grow flex flex-col-reverse max-h-full overflow-y-scroll px-3 py-14 "
+        className={`w-full flex-grow flex ${
+          !dark
+            ? `bg-[url('https://i.ibb.co/5MyL7d1/telegram.png')] `
+            : `dark:bg-[#0E1621]`
+        } bg-cover h-[100vh] bg-center bg-no-repeat   flex-col-reverse max-h-full overflow-y-scroll px-3 py-14 `}
       >
         {/* <Outlet></Outlet> */}
-        <span className="bg-white p-3 w-1/2 max-w-max rounded-3xl rounded-bl-none">
+        <span className="bg-white p-3 w-1/2 max-w-max rounded-3xl dark:bg-[#182533] dark:text-[#fff] rounded-bl-none ]">
           {message}
         </span>
       </div>
-      <div className="fixed w-full bg-white bottom-0">
-        <div className="relative">
+      <div className="fixed w-full bg-white dark:bg-black  bottom-0 ">
+        <div className="relative ">
           <GrAttachment
             type="file"
             className="absolute top-[14px] left-3 text-gray-400 text-xl"
@@ -111,10 +106,10 @@ const Content = ({ selectedChat }) => {
             type="text"
             name=""
             placeholder="Write a message..."
-            className="border border-gray-300 border-t-0 border-b-0 px-12 py-[10px] outline-none w-full"
+            className="border border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-12 py-[10px] outline-none w-full"
             id=""
           />
-          <div className="flex absolute left-1/2 ml-[100px] top-3 gap-6">
+          <div className="flex absolute left-1/2 ml-[140px] top-3 gap-6">
             <BsEmojiSmile className="text-[22px] text-gray-500" />
             {textValue.length > 0 ? (
               <IoMdSend className="text-[#40A7E3] text-[22px]" />
