@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+// import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Sidebar = () => {
-  const [chatData, setChatData] = useState([]);
-
-  useEffect(() => {
-    fetch("chat_id_data.json")
-      .then((res) => res.json())
-      .then((data) => setChatData(data));
-  }, []);
+const Sidebar = ({chatData,handleMessage}) => {
+  
   return (
     <div className="w-[35%]  relative bg-white px-5 py-2">
       <div className="flex sticky bg-white top-0 items-center gap-6">
@@ -21,7 +16,7 @@ const Sidebar = () => {
       </div>
       <div className="max-h-screen mt-10 overflow-y-auto space-y-6">
         {chatData?.map((chat) => (
-          <div key={chat.id} className="flex gap-4 ">
+          <div onClick={()=>handleMessage(chat)} key={chat.id} className="flex gap-4 cursor-pointer">
             <div className="avatar">
               <div className="w-16 rounded-full">
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
