@@ -20,7 +20,7 @@ const Main = () => {
   } = useQuery({
     queryKey: ["chatData"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/chats");
+      const res = await axios.get("https://telegram-replica-task-server.vercel.app/chats");
       return res.data;
     },
   });
@@ -43,7 +43,6 @@ const Main = () => {
     // console.log(message._id);
     refetch();
     setSelectedChat(message);
-    
   };
 
   if (isPending) {

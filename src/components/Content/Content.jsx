@@ -36,7 +36,7 @@ const Content = ({ selectedChat, dark, setSelectedChat, refetch }) => {
 
   const handleSendMessage = () => {
     axios
-      .put(`http://localhost:5000/chats/${selectedChat._id}`, {
+      .put(`https://telegram-replica-task-server.vercel.app/chats/${selectedChat._id}`, {
         replyMessage: textValue,
       })
       .then((res) => {
