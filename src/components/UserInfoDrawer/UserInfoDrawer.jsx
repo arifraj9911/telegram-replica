@@ -23,7 +23,7 @@ const UserInfoDrawer = ({ selectedChat }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-white text-base-content min-h-full w-80 p-4">
+        <ul className="menu bg-white  dark:bg-[#17212B] dark:text-[#fff] text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
           <div>
             <div className="flex justify-between items-center mb-10">
@@ -53,24 +53,25 @@ const UserInfoDrawer = ({ selectedChat }) => {
                 </p>
               </div>
             </div>
-            <div className=" border-t-8 my-6"></div>
+            <div className=" border-t-8 dark:border-[#232E3C] my-6"></div>
             <ul>
               <li className="">
-                
                 <a className="flex items-start gap-8">
-                <BsExclamationCircle className="text-xl mt-1" />
+                  <BsExclamationCircle className="text-xl mt-1" />
                   <span>
-                  <p className="text-sm font-semibold">+8801717171717</p>
-                  <p className="text-sm text-gray-400 ml-1">Mobile</p>
+                    <p className="text-sm font-semibold">+8801717171717</p>
+                    <p className="text-sm text-gray-400 ml-1">Mobile</p>
                   </span>
                 </a>
               </li>
-              <div className="divider my-3"></div>
+              <div className="border-t dark:border-[#232E3C]  my-3"></div>
               <li className="">
-                
                 <a className="flex items-start gap-6 w-full justify-between">
-                <FaRegBell className="text-xl mt-1" />
-                  <p className="text-sm font-semibold mt-1 mr-10"> Notifications</p>
+                  <FaRegBell className="text-xl mt-1" />
+                  <p className="text-sm font-semibold mt-1 mr-10">
+                    {" "}
+                    Notifications
+                  </p>
                   <input
                     type="checkbox"
                     className="toggle bg-[#40A7E3] hover:bg-[#40A7E3]"
@@ -79,33 +80,29 @@ const UserInfoDrawer = ({ selectedChat }) => {
                 </a>
               </li>
             </ul>
-            <div className=" border-t-8 my-6"></div>
+            <div className=" border-t-8 dark:border-[#232E3C] my-6"></div>
             <ul className="space-y-1">
               <li>
-                
                 <a className="flex items-start gap-6">
-                <PiShareFat className="text-xl mt-1" />
+                  <PiShareFat className="text-xl mt-1" />
                   <p className="text-sm font-semibold"> Share this contact</p>
                 </a>
               </li>
               <li className="">
-                
                 <a className="flex items-start gap-6">
-                <VscEdit className="text-xl mt-1" />
+                  <VscEdit className="text-xl mt-1" />
                   <p className="text-sm font-semibold"> Edit contact</p>
                 </a>
               </li>
               <li className="">
-                
-                <a className="flex items-start gap-6" >
-                <AiOutlineDelete className="text-xl mt-1" />
+                <a className="flex items-start gap-6">
+                  <AiOutlineDelete className="text-xl mt-1" />
                   <p className="text-sm font-semibold"> Delete contact</p>
                 </a>
               </li>
               <li className="text-red-500">
-                
                 <a className="flex items-start gap-6">
-                <IoHandLeftOutline className="text-xl mt-1" />
+                  <IoHandLeftOutline className="text-xl mt-1" />
                   <p className="text-sm font-semibold"> Block user</p>
                 </a>
               </li>

@@ -21,8 +21,8 @@ const ViewProfileModal = ({ selectedChat }) => {
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
-        <div className="modal-box">
-          <div className="flex justify-between items-center mb-10">
+        <div className="modal-box bg-white dark:bg-[#17212B] dark:text-[#fff]">
+          <div className="flex justify-between  items-center mb-10">
             <h4 className="text-xl font-semibold">User Info</h4>
             <div className="flex gap-3 text-lg items-center">
               <span>
@@ -106,7 +106,7 @@ const ViewProfileModal = ({ selectedChat }) => {
               </p>
             </div>
           </div>
-          <div className=" border-t-8 my-6"></div>
+          <div className=" border-t-8 dark:border-[#232E3C] my-6"></div>
           <ul>
             <li className="flex items-start gap-6">
               <BsExclamationCircle className="text-xl mt-1" />
@@ -135,7 +135,7 @@ const ViewProfileModal = ({ selectedChat }) => {
               </a>
             </li>
           </ul>
-          <div className=" border-t-8 my-6"></div>
+          <div className=" border-t-8 dark:border-[#232E3C] my-6"></div>
           <ul className="space-y-4">
             <li className="flex items-start gap-6">
               <PiShareFat className="text-xl mt-1" />

@@ -15,9 +15,10 @@ import { PiBookOpenUser } from "react-icons/pi";
 import ViewProfileModal from "../ViewProfileModal/ViewProfileModal";
 import UserInfoDrawer from "../UserInfoDrawer/UserInfoDrawer";
 import toast from "react-hot-toast";
+import axios from "axios";
 // import { Outlet, useLocation } from "react-router-dom";
 
-const Content = ({ selectedChat, dark, setSelectedChat }) => {
+const Content = ({ selectedChat, dark, setSelectedChat, refetch }) => {
   const { message, sender, created_at, reply } = selectedChat;
   const [textValue, setTextValue] = useState("");
 
@@ -30,31 +31,24 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
 
   const handleMessageInput = (e) => {
     setTextValue(e.target.value);
+    // refetch();
   };
 
   const handleSendMessage = () => {
-    console.log(textValue);
-
-    // fetch("http://localhost:5000/chats", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ replyMessage: textValue }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-
-    fetch(`http://localhost:5000/chats/${selectedChat._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ replyMessage: textValue }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    axios
+      .put(`http://localhost:5000/chats/${selectedChat._id}`, {
+        replyMessage: textValue,
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          setTextValue("");
+          toast.success("message send");
+          refetch();
+        }
+      });
   };
+
 
   return (
     <div className={` w-full  relative  `}>
