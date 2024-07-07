@@ -1,8 +1,31 @@
-# React + Vite
+# Telegram Replica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A replica of the Telegram app built using React.js.
 
-Currently, two official plugins are available:
+## Live Website
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Check out the live version of the project (https://telegram-replica.vercel.app/).
+
+## Features
+
+- Navbar Drawer
+- Dark/Light Functionality
+- Chat Implement by need to reload page
+- Button interaction added
+- View Details Modals implement
+- Responsive design ( Mobile View )
+
+## Technologies Used
+
+- React.js
+- Express JS (for backend)
+- MongoDB (for database)
+- CSS/Tailwind CSS
+
+## NPM Package Used
+
+- TanStack Query ( for fetching )
+- Axios
+- React Hot Toast
+- React Spinner
+
