@@ -14,7 +14,6 @@ import {
 import { LuUserPlus, LuUsers } from "react-icons/lu";
 import { SlArrowDown, SlArrowUp, SlQuestion } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import "./NavbarDrawer.css";
 
 const NavbarDrawer = ({ darkModeHandler, dark }) => {
   const [toggleArrow, setToggleArrow] = useState(false);
@@ -60,7 +59,7 @@ const NavbarDrawer = ({ darkModeHandler, dark }) => {
         ></label>
         <ul className="menu bg-white dark:bg-[#17212B] dark:text-[#fff] text-base-content min-h-full w-72 p-0">
           {/* Sidebar content here */}
-          <div className="p-5 bg-[#2876a3] border-b dark:border-b-[#101921] lg:border-b-gray-300 text-white lg:text-black lg:bg-white dark:bg-[#17212B] dark:text-white">
+          <div className="p-5 bg-[#2876a3] lg:border-b dark:border-b-[#101921] lg:border-b-gray-300 text-white lg:text-black lg:bg-white dark:bg-[#1e2731] dark:text-white">
             <div className="flex  justify-between items-start">
               <div className="avatar mb-4">
                 <div className="w-12 rounded-full">

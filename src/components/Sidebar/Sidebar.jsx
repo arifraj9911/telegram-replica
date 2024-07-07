@@ -6,8 +6,8 @@ import { GoSearch } from "react-icons/go";
 
 const Sidebar = ({ chatData, handleMessage, darkModeHandler, dark }) => {
   return (
-    <div className="lg:w-1/3  relative bg-white  dark:bg-[#17212B] dark:text-[#b9b9b9]">
-      <div className="flex sticky bg-[#2876a3] px-4 py-2 lg:bg-white dark:bg-[#17212B] top-0 items-center gap-4">
+    <div className={`  b h-screen relative bg-white  dark:bg-[#17212B] dark:text-[#b9b9b9]`}>
+      <div className="flex sticky bg-[#2876a3] px-4 py-3 lg:py-2 lg:bg-white dark:bg-[#1e2731] top-0 items-center gap-4">
         <div className="drawer-content">
           <label htmlFor="my-drawer" className=" drawer-button">
             <GiHamburgerMenu className="text-[22px] text-white lg:text-gray-400 cursor-pointer" />
@@ -29,7 +29,7 @@ const Sidebar = ({ chatData, handleMessage, darkModeHandler, dark }) => {
         />
       </div>
 
-      <div className="max-h-screen  lg:mt-6 px-4 py-2 overflow-y-auto space-y-3 ">
+      <div className="max-h-screen lg:mt-6 px-4 py-2 overflow-y-auto space-y-3 ">
         {chatData?.map((chat) => (
           <div
             onClick={() => handleMessage(chat)}
@@ -41,9 +41,9 @@ const Sidebar = ({ chatData, handleMessage, darkModeHandler, dark }) => {
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>
-            <div className="flex justify-between border-b lg:border-none  hover:bg-[#F1F1F1] dark:hover:bg-[#202B36] p-2 w-full">
+            <div className="flex justify-between border-b lg:border-none dark:border-b-[#101921]  hover:bg-[#F1F1F1] dark:hover:bg-[#202B36] p-2 w-full">
               <div>
-                <h4 className="text-lg font-bold dark:text-[#fff]">
+                <h4 className="text-[16px] lg:text-lg font-bold dark:text-[#fff]">
                   {chat?.sender?.name}
                 </h4>
                 <p className="text-sm">

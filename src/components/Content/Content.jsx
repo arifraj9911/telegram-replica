@@ -20,10 +20,10 @@ const Content = ({ selectedChat, dark }) => {
 
   // console.log(selectedChat,created_at);
   const lastSeen = created_at?.split("T")[0];
-  // console.log(lastSeen)
+  console.log(selectedChat)
 
   return (
-    <div className="flex-1 relative hidden md:flex">
+    <div className={` w-full  relative  `}>
       {selectedChat.sender && (
         <div className="fixed border border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
           <div className="flex">

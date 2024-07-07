@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 
 const Main = () => {
   const [chatData, setChatData] = useState([]);
-  const [selectedChat,setSelectedChat] = useState({message:'Select a chat to start messaging'})
+  const [selectedChat, setSelectedChat] = useState({
+    message: "Select a chat to start messaging",
+  });
 
   const [dark, setDark] = useState(localStorage.getItem("darkMode"));
-  
 
   useEffect(() => {
     fetch("chat_id_data.json")
@@ -29,16 +30,34 @@ const Main = () => {
     setDark((prevMode) => !prevMode);
   };
 
-  const handleMessage = message =>{
+  const handleMessage = (message) => {
     // console.log(message);
     setSelectedChat(message);
   };
 
-  console.log(selectedChat)
+  console.log(selectedChat);
   return (
     <div className="flex ">
-      <Sidebar  chatData={chatData} handleMessage={handleMessage} dark={dark} darkModeHandler={darkModeHandler}></Sidebar>
-      <Content selectedChat={selectedChat} dark={dark}></Content>
+      <div
+        className={`${
+          selectedChat.sender ? `hidden ` : `block`
+        } md:block lg:w-1/3`}
+      >
+        <Sidebar
+          chatData={chatData}
+          handleMessage={handleMessage}
+          dark={dark}
+          darkModeHandler={darkModeHandler}
+          selectedChat={selectedChat}
+        ></Sidebar>
+      </div>
+      <div
+        className={`${
+          selectedChat.sender ? `block` : `hidden`
+        } flex-1  md:flex`}
+      >
+        <Content selectedChat={selectedChat} dark={dark}></Content>
+      </div>
     </div>
   );
 };
