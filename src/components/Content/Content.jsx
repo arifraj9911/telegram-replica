@@ -13,6 +13,8 @@ import { LuPaintbrush } from "react-icons/lu";
 import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
 import ViewProfileModal from "../ViewProfileModal/ViewProfileModal";
+import UserInfoDrawer from "../UserInfoDrawer/UserInfoDrawer";
+import toast from "react-hot-toast";
 // import { Outlet, useLocation } from "react-router-dom";
 
 const Content = ({ selectedChat, dark, setSelectedChat }) => {
@@ -56,13 +58,22 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
             </div>
             <div className="flex items-center  gap-4 absolute left-1/2 ml-[140px] md:ml-20 top-4 ">
               <IoSearchOutline className="text-xl hidden md:flex" />
-              <MdCall className="text-xl" />
-              <PiBookOpenUser className="text-xl hidden md:flex" />
+              <MdCall
+                onClick={() => toast.success("Ringing Call, Cring Cring !!!")}
+                className="text-xl cursor-pointer"
+              />
+              <div className="hidden md:flex">
+                <div className="drawer-content">
+                  <label htmlFor="my-drawer-4" className="drawer-button">
+                    <PiBookOpenUser className="text-xl  cursor-pointer" />
+                  </label>
+                </div>
+              </div>
 
               <div className="flex items-center flex-col ">
                 <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="">
-                    <HiDotsVertical className="text-xl " />
+                    <HiDotsVertical className="text-xl text" />
                   </div>
                   <ul
                     tabIndex={0}
@@ -77,7 +88,11 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
                     </li>
                     <hr />
                     <li>
-                      <a onClick={()=>document.getElementById('my_modal_2').showModal()}>
+                      <a
+                        onClick={() =>
+                          document.getElementById("my_modal_2").showModal()
+                        }
+                      >
                         <FaRegCircleUser />
                         View profile
                       </a>
@@ -167,6 +182,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
         </div>
       )}
       <ViewProfileModal selectedChat={selectedChat}></ViewProfileModal>
+      <UserInfoDrawer selectedChat={selectedChat}></UserInfoDrawer>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { MdCall } from "react-icons/md";
 import { RxCross1, RxTimer } from "react-icons/rx";
 import { HiDotsVertical } from "react-icons/hi";
 import { TfiGift } from "react-icons/tfi";
+import toast from "react-hot-toast";
 
 const ViewProfileModal = ({ selectedChat }) => {
   const { sender, created_at } = selectedChat;
@@ -25,7 +26,10 @@ const ViewProfileModal = ({ selectedChat }) => {
             <h4 className="text-xl font-semibold">User Info</h4>
             <div className="flex gap-3 text-lg items-center">
               <span>
-                <MdCall />
+                <MdCall
+                  className="cursor-pointer"
+                  onClick={() => toast.success("Ringing Call, Cring Cring !!!")}
+                />
               </span>
               <span>
                 <div className="flex items-center flex-col ">

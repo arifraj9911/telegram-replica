@@ -1,6 +1,7 @@
 import Sidebar from "../components/Sidebar/Sidebar";
 import Content from "../components/Content/Content";
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 const Main = () => {
   const [chatData, setChatData] = useState([]);
@@ -58,6 +59,7 @@ const Main = () => {
       >
         <Content selectedChat={selectedChat} setSelectedChat={setSelectedChat} dark={dark}></Content>
       </div>
+      <Toaster />
     </div>
   );
 };
