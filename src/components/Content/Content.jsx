@@ -78,7 +78,7 @@ const Content = ({ selectedChat, dark, setSelectedChat, refetch }) => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center  gap-4 absolute left-1/2 ml-[140px] md:ml-20 top-4 ">
+            <div className="flex items-center gap-3 md:gap-4 absolute left-1/2 ml-[130px] md:ml-20 top-4 ">
               <IoSearchOutline className="text-xl hidden md:flex" />
               <MdCall
                 onClick={() => toast.success("Ringing Call, Cring Cring !!!")}
@@ -198,7 +198,7 @@ const Content = ({ selectedChat, dark, setSelectedChat, refetch }) => {
               className="border border-x-0 md:border-x border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-10  md:px-12 py-[10px] outline-none w-full"
               id=""
             />
-            <div className="flex absolute left-1/2 ml-[140px] top-3 gap-3 md:gap-6">
+            <div className="flex absolute left-1/2 ml-[130px] top-3 gap-3 md:gap-6">
               <BsEmojiSmile className="text-[22px] hidden md:flex text-gray-500" />
               <GrAttachment
                 className={`${
@@ -208,7 +208,7 @@ const Content = ({ selectedChat, dark, setSelectedChat, refetch }) => {
               {textValue.length > 0 ? (
                 <IoMdSend
                   onClick={handleSendMessage}
-                  className="text-[#40A7E3] cursor-pointer text-[22px] ml-8 md:ml-0"
+                  className="text-[#40A7E3] cursor-pointer text-[22px] ml-6 md:ml-0"
                 />
               ) : (
                 <MdOutlineKeyboardVoice className="text-[22px] text-gray-500" />
