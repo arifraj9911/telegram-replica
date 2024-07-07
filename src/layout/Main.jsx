@@ -9,13 +9,22 @@ const Main = () => {
     message: "Select a chat to start messaging",
   });
 
+  const [reply,setReply] = useState([])
+
   const [dark, setDark] = useState(localStorage.getItem("darkMode"));
 
   useEffect(() => {
-    fetch("chat_id_data.json")
+    fetch("http://localhost:5000/chats")
       .then((res) => res.json())
       .then((data) => setChatData(data));
   }, []);
+  useEffect(() => {
+    fetch("http://localhost:5000/reply-chats")
+      .then((res) => res.json())
+      .then((data) => setReply(data));
+  }, []);
+
+  
 
   useEffect(() => {
     const isDarkMode = localStorage.getItem("darkMode") === "true";
@@ -57,7 +66,7 @@ const Main = () => {
           selectedChat.sender ? `block` : `hidden`
         } flex-1  md:flex`}
       >
-        <Content selectedChat={selectedChat} setSelectedChat={setSelectedChat} dark={dark}></Content>
+        <Content selectedChat={selectedChat} chatData={chatData} setSelectedChat={setSelectedChat} dark={dark} reply={reply}></Content>
       </div>
       <Toaster />
     </div>

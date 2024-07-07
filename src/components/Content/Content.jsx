@@ -17,7 +17,7 @@ import UserInfoDrawer from "../UserInfoDrawer/UserInfoDrawer";
 import toast from "react-hot-toast";
 // import { Outlet, useLocation } from "react-router-dom";
 
-const Content = ({ selectedChat, dark, setSelectedChat }) => {
+const Content = ({ selectedChat, dark, setSelectedChat, reply }) => {
   const { message, sender, created_at } = selectedChat;
   const [textValue, setTextValue] = useState("");
 
@@ -27,6 +27,24 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
   const lastSeenTime = lastSeen?.split("T")[1];
   // console.log(created_at);
   // console.log(lastSeenDate, lastSeenTime);
+
+  const handleMessageInput = (e) => {
+    setTextValue(e.target.value);
+  };
+
+  const handleSendMessage = () => {
+    console.log(textValue);
+
+    fetch("http://localhost:5000/chats", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ replyMessage: textValue }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <div className={` w-full  relative  `}>
@@ -134,6 +152,21 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
             : `text-center flex-col items-center justify-center`
         }  overflow-y-scroll px-3 py-14 `}
       >
+        {selectedChat.sender && (
+          <div className={` mt-2`}>
+            {reply.map((replyMessage) => (
+              <div
+                key={replyMessage._id}
+                className={` flex  items-end justify-center flex-col-reverse  `}
+              >
+                <p className="bg-white mb-2 py-2 px-4 w-3/4 md:w-1/2 max-w-max rounded-3xl rounded-br-none dark:bg-[#182533] dark:text-[#fff]">
+                  {replyMessage?.replyMessage}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* <Outlet></Outlet> */}
         <span
           className={`${
@@ -145,6 +178,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
           {message}
         </span>
       </div>
+
       {selectedChat.sender && (
         <div className="fixed w-full bg-white dark:bg-black  bottom-0 ">
           <div className="relative ">
@@ -157,7 +191,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
               className="absolute flex md:hidden top-[14px] left-3 text-gray-400 text-xl"
             />
             <input
-              onChange={(e) => setTextValue(e.target.value)}
+              onChange={handleMessageInput}
               value={textValue}
               type="text"
               name=""
@@ -173,7 +207,10 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
                 } text-[22px] flex md:hidden text-gray-500`}
               />
               {textValue.length > 0 ? (
-                <IoMdSend className="text-[#40A7E3] text-[22px] ml-8 md:ml-0" />
+                <IoMdSend
+                  onClick={handleSendMessage}
+                  className="text-[#40A7E3] cursor-pointer text-[22px] ml-8 md:ml-0"
+                />
               ) : (
                 <MdOutlineKeyboardVoice className="text-[22px] text-gray-500" />
               )}
