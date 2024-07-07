@@ -15,13 +15,15 @@ import { PiBookOpenUser } from "react-icons/pi";
 // import { Outlet, useLocation } from "react-router-dom";
 
 const Content = ({ selectedChat, dark }) => {
-  const { message, sender } = selectedChat;
+  const { message, sender, created_at } = selectedChat;
   const [textValue, setTextValue] = useState("");
 
-  console.log(selectedChat);
+  // console.log(selectedChat,created_at);
+  const lastSeen = created_at?.split("T")[0];
+  // console.log(lastSeen)
 
   return (
-    <div className="flex-1 relative">
+    <div className="flex-1 relative hidden md:flex">
       {selectedChat.sender && (
         <div className="fixed border border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
           <div className="flex">
@@ -30,7 +32,7 @@ const Content = ({ selectedChat, dark }) => {
                 {sender?.name}
               </h2>
               <p className="text-sm text-gray-400 font-normal">
-                last seen 12/12/24
+                last seen {lastSeen}
               </p>
             </div>
             <div className="flex items-center  gap-4 absolute left-1/2 ml-20 top-4 ">
