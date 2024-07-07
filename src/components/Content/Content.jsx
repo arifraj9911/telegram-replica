@@ -12,6 +12,7 @@ import { IoArrowBackOutline, IoSearchOutline } from "react-icons/io5";
 import { LuPaintbrush } from "react-icons/lu";
 import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
+import ViewProfileModal from "../ViewProfileModal/ViewProfileModal";
 // import { Outlet, useLocation } from "react-router-dom";
 
 const Content = ({ selectedChat, dark, setSelectedChat }) => {
@@ -28,7 +29,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
   return (
     <div className={` w-full  relative  `}>
       {selectedChat.sender && (
-        <div className="fixed border border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
+        <div className="fixed border border-l-0 md:border-l border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
           <div className="flex">
             <div className="flex gap-4 items-center">
               <IoArrowBackOutline
@@ -49,7 +50,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
                   {sender?.name}
                 </h2>
                 <p className="text-xs md:text-sm text-gray-400 font-normal">
-                  last seen {lastSeenDate} at {lastSeenTime}
+                  last seen {lastSeenDate} at {lastSeenTime} PM
                 </p>
               </div>
             </div>
@@ -76,7 +77,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
                     </li>
                     <hr />
                     <li>
-                      <a>
+                      <a onClick={()=>document.getElementById('my_modal_2').showModal()}>
                         <FaRegCircleUser />
                         View profile
                       </a>
@@ -146,7 +147,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
               type="text"
               name=""
               placeholder="Write a message..."
-              className="border border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-10  md:px-12 py-[10px] outline-none w-full"
+              className="border border-x-0 md:border-x border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-10  md:px-12 py-[10px] outline-none w-full"
               id=""
             />
             <div className="flex absolute left-1/2 ml-[140px] top-3 gap-3 md:gap-6">
@@ -165,6 +166,7 @@ const Content = ({ selectedChat, dark, setSelectedChat }) => {
           </div>
         </div>
       )}
+      <ViewProfileModal selectedChat={selectedChat}></ViewProfileModal>
     </div>
   );
 };
