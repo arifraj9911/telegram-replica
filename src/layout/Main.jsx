@@ -56,7 +56,7 @@ const Main = () => {
           selectedChat.sender ? `block` : `hidden`
         } flex-1  md:flex`}
       >
-        <Content selectedChat={selectedChat} dark={dark}></Content>
+        <Content selectedChat={selectedChat} setSelectedChat={setSelectedChat} dark={dark}></Content>
       </div>
     </div>
   );

@@ -8,37 +8,55 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { GrAttachment } from "react-icons/gr";
 import { HiDotsVertical } from "react-icons/hi";
 import { IoIosArrowForward, IoMdSend } from "react-icons/io";
-import { IoSearchOutline } from "react-icons/io5";
+import { IoArrowBackOutline, IoSearchOutline } from "react-icons/io5";
 import { LuPaintbrush } from "react-icons/lu";
 import { MdCall, MdOutlineKeyboardVoice } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
 // import { Outlet, useLocation } from "react-router-dom";
 
-const Content = ({ selectedChat, dark }) => {
+const Content = ({ selectedChat, dark, setSelectedChat }) => {
   const { message, sender, created_at } = selectedChat;
   const [textValue, setTextValue] = useState("");
 
   // console.log(selectedChat,created_at);
-  const lastSeen = created_at?.split("T")[0];
-  console.log(selectedChat)
+  const lastSeen = created_at?.split(".")[0];
+  const lastSeenDate = lastSeen?.split("T")[0];
+  const lastSeenTime = lastSeen?.split("T")[1];
+  // console.log(created_at);
+  // console.log(lastSeenDate, lastSeenTime);
 
   return (
     <div className={` w-full  relative  `}>
       {selectedChat.sender && (
         <div className="fixed border border-t-0 border-b-0  border-gray-300 dark:border-[#0E1621] w-full bg-white dark:bg-[#17212B] dark:text-[#b9b9b9]  px-3  py-1 top-0">
           <div className="flex">
-            <div>
-              <h2 className="text-[16px] dark:text-[#fff] font-semibold capitalize">
-                {sender?.name}
-              </h2>
-              <p className="text-sm text-gray-400 font-normal">
-                last seen {lastSeen}
-              </p>
+            <div className="flex gap-4 items-center">
+              <IoArrowBackOutline
+                onClick={() =>
+                  setSelectedChat({
+                    message: "Select a chat to start messaging",
+                  })
+                }
+                className="mr-2 text-xl flex md:hidden"
+              />
+              <div className="avatar md:hidden">
+                <div className="w-10 rounded-full">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+              </div>
+              <div>
+                <h2 className="text-[16px] dark:text-[#fff] font-semibold capitalize">
+                  {sender?.name}
+                </h2>
+                <p className="text-xs md:text-sm text-gray-400 font-normal">
+                  last seen {lastSeenDate} at {lastSeenTime}
+                </p>
+              </div>
             </div>
-            <div className="flex items-center  gap-4 absolute left-1/2 ml-20 top-4 ">
-              <IoSearchOutline className="text-xl" />
+            <div className="flex items-center  gap-4 absolute left-1/2 ml-[140px] md:ml-20 top-4 ">
+              <IoSearchOutline className="text-xl hidden md:flex" />
               <MdCall className="text-xl" />
-              <PiBookOpenUser className="text-xl" />
+              <PiBookOpenUser className="text-xl hidden md:flex" />
 
               <div className="flex items-center flex-col ">
                 <div className="dropdown dropdown-end ">
@@ -106,7 +124,7 @@ const Content = ({ selectedChat, dark }) => {
             selectedChat.sender
               ? `p-3 rounded-bl-none bg-white`
               : `py-1 px-2 text-white bg-[#729965] text-sm`
-          }   w-1/2 max-w-max rounded-3xl dark:bg-[#182533] dark:text-[#fff]  ]`}
+          }   w-3/4 md:w-1/2 max-w-max rounded-3xl dark:bg-[#182533] dark:text-[#fff]  ]`}
         >
           {message}
         </span>
@@ -116,7 +134,11 @@ const Content = ({ selectedChat, dark }) => {
           <div className="relative ">
             <GrAttachment
               type="file"
-              className="absolute top-[14px] left-3 text-gray-400 text-xl"
+              className="absolute hidden md:flex top-[14px] left-3 text-gray-400 text-xl"
+            />
+            <BsEmojiSmile
+              type="file"
+              className="absolute flex md:hidden top-[14px] left-3 text-gray-400 text-xl"
             />
             <input
               onChange={(e) => setTextValue(e.target.value)}
@@ -124,13 +146,18 @@ const Content = ({ selectedChat, dark }) => {
               type="text"
               name=""
               placeholder="Write a message..."
-              className="border border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-12 py-[10px] outline-none w-full"
+              className="border border-gray-300 dark:bg-[#17212B] dark:text-[#fff] dark:border-[#0E1621] border-t-0 border-b-0 px-10  md:px-12 py-[10px] outline-none w-full"
               id=""
             />
-            <div className="flex absolute left-1/2 ml-[140px] top-3 gap-6">
-              <BsEmojiSmile className="text-[22px] text-gray-500" />
+            <div className="flex absolute left-1/2 ml-[140px] top-3 gap-3 md:gap-6">
+              <BsEmojiSmile className="text-[22px] hidden md:flex text-gray-500" />
+              <GrAttachment
+                className={`${
+                  textValue.length > 0 && `hidden`
+                } text-[22px] flex md:hidden text-gray-500`}
+              />
               {textValue.length > 0 ? (
-                <IoMdSend className="text-[#40A7E3] text-[22px]" />
+                <IoMdSend className="text-[#40A7E3] text-[22px] ml-8 md:ml-0" />
               ) : (
                 <MdOutlineKeyboardVoice className="text-[22px] text-gray-500" />
               )}
