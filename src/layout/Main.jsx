@@ -9,7 +9,6 @@ const Main = () => {
     message: "Select a chat to start messaging",
   });
 
-  const [reply,setReply] = useState([])
 
   const [dark, setDark] = useState(localStorage.getItem("darkMode"));
 
@@ -18,12 +17,6 @@ const Main = () => {
       .then((res) => res.json())
       .then((data) => setChatData(data));
   }, []);
-  useEffect(() => {
-    fetch("http://localhost:5000/reply-chats")
-      .then((res) => res.json())
-      .then((data) => setReply(data));
-  }, []);
-
   
 
   useEffect(() => {
@@ -41,11 +34,11 @@ const Main = () => {
   };
 
   const handleMessage = (message) => {
-    // console.log(message);
+    // console.log(message._id);
     setSelectedChat(message);
   };
 
-  console.log(selectedChat);
+  // console.log(selectedChat);
   return (
     <div className="flex ">
       <div
@@ -66,7 +59,7 @@ const Main = () => {
           selectedChat.sender ? `block` : `hidden`
         } flex-1  md:flex`}
       >
-        <Content selectedChat={selectedChat} chatData={chatData} setSelectedChat={setSelectedChat} dark={dark} reply={reply}></Content>
+        <Content selectedChat={selectedChat} chatData={chatData} setSelectedChat={setSelectedChat} dark={dark} ></Content>
       </div>
       <Toaster />
     </div>

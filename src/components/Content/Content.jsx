@@ -17,11 +17,11 @@ import UserInfoDrawer from "../UserInfoDrawer/UserInfoDrawer";
 import toast from "react-hot-toast";
 // import { Outlet, useLocation } from "react-router-dom";
 
-const Content = ({ selectedChat, dark, setSelectedChat, reply }) => {
-  const { message, sender, created_at } = selectedChat;
+const Content = ({ selectedChat, dark, setSelectedChat }) => {
+  const { message, sender, created_at, reply } = selectedChat;
   const [textValue, setTextValue] = useState("");
 
-  // console.log(selectedChat,created_at);
+  console.log(selectedChat, created_at);
   const lastSeen = created_at?.split(".")[0];
   const lastSeenDate = lastSeen?.split("T")[0];
   const lastSeenTime = lastSeen?.split("T")[1];
@@ -35,8 +35,18 @@ const Content = ({ selectedChat, dark, setSelectedChat, reply }) => {
   const handleSendMessage = () => {
     console.log(textValue);
 
-    fetch("http://localhost:5000/chats", {
-      method: "POST",
+    // fetch("http://localhost:5000/chats", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ replyMessage: textValue }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+
+    fetch(`http://localhost:5000/chats/${selectedChat._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -152,18 +162,13 @@ const Content = ({ selectedChat, dark, setSelectedChat, reply }) => {
             : `text-center flex-col items-center justify-center`
         }  overflow-y-scroll px-3 py-14 `}
       >
-        {selectedChat.sender && (
-          <div className={` mt-2`}>
-            {reply.map((replyMessage) => (
-              <div
-                key={replyMessage._id}
-                className={` flex  items-end justify-center flex-col-reverse  `}
-              >
-                <p className="bg-white mb-2 py-2 px-4 w-3/4 md:w-1/2 max-w-max rounded-3xl rounded-br-none dark:bg-[#182533] dark:text-[#fff]">
-                  {replyMessage?.replyMessage}
-                </p>
-              </div>
-            ))}
+        {reply && (
+          <div
+            className={` flex mt-2 items-end justify-center flex-col-reverse  `}
+          >
+            <p className="bg-white mb-2 py-2 px-4 w-3/4 md:w-1/2 max-w-max rounded-3xl rounded-br-none dark:bg-[#182533] dark:text-[#fff]">
+              {reply?.replyMessage}
+            </p>
           </div>
         )}
 
